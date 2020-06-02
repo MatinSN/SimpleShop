@@ -6,7 +6,7 @@ const auth = async (req,res,next)=>{
     try{
       
         const token = req.header("Authorization").replace("Bearer ","");
-        const decoded = jwt.verify(token,"MyJwtSecret");
+        const decoded = jwt.verify(token,process.env.SECRET);
         const user = await Member.findOne({
             _id:decoded._id,
             "tokens.token" :token

@@ -94,7 +94,7 @@ MemberSchema.methods.toJSON = function(){
 
 MemberSchema.methods.addAuthToken = async function(){
   const user = this;
-  const token = await jwt.sign({_id:user._id.toString()},"MyJwtSecret")
+  const token = await jwt.sign({_id:user._id.toString()},process.env.SECRET)
   user.tokens = user.tokens.concat({token})
   await user.save()
   return token
