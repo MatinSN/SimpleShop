@@ -6,9 +6,10 @@ const userRouter = require("./route/user")
 const cartRouter = require("./route/cart")
 const ratingRouter = require("./route/rating")
 const transactionRouter = require("./route/transaction")
+const cors = require("cors")
 require("./dbConnection")
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 
 const app = express()
@@ -16,6 +17,7 @@ const app = express()
 app.set("view engine","hbs")
 
 app.use(express.json())
+app.use(cors())
 app.use(productsRouter)
 app.use(userRouter)
 app.use(cartRouter)
